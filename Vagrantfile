@@ -43,6 +43,10 @@ Vagrant.configure(2) do |config|
     cd /var/www
     sudo mv html html_old
     sudo ln -s /vagrant/FarmHack.org html
+    sudo a2enmod rewrite
+    sudo cp /vagrant/000-default.conf /etc/apache2/sites-available/
     sudo service apache2 reload
+    cd /var/www/html
+    cat dump.sql | drush sql-cli
   SHELL
 end
